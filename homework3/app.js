@@ -25,13 +25,13 @@ function compact(arr) {
   function numbers(a, b) {
     let arr = [];
     for (let i = a; i <= b; i++) {
-      for (let j = 1; j < i; j++) {
+      for (let j = 0; j < i; j++) {
         arr.push(i);
       }
     }
     return arr;
   }
-  numbers(1, 5);
+  numbers(1, 10);
   
   // Task 4
   function randArray(k) {
