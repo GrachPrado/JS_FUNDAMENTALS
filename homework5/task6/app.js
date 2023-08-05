@@ -14,6 +14,21 @@ function changeColor() {
                     document.getElementById("outprice").innerHTML = element.getAttribute("data-price");
                 } 
             }
+
+            colorList.forEach(() => {
+                const getSpecificColor = element.getAttribute("color");
+                // console.log(getSpecificColor);
+                const showShoes = document.querySelectorAll(".shoe");
+                for (let k = 0; k < showShoes.length; k++) {
+                    const shoe = showShoes[k];
+                    if(getSpecificColor ===  shoe.getAttribute("color")){
+                        shoe.classList.add("show")
+                    }
+                    if(getSpecificColor !==  shoe.getAttribute("color")){
+                        shoe.classList.remove("show")
+                    }
+                }
+            });
         });
     }
 }
