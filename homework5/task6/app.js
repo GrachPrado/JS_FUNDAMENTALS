@@ -29,6 +29,22 @@ function changeColor() {
                     }
                 }
             });
+
+            colorList.forEach(() => {
+                const getSpecificColor = element.getAttribute("color");
+                // console.log(getSpecificColor);
+                const showGradient = document.querySelectorAll(".gradient");
+                for (let k = 0; k < showGradient.length; k++) {
+                    const grad = showGradient[k];
+                    if(getSpecificColor ===  grad.getAttribute("color")){
+                        grad.classList.add("second")
+                        document.getElementById("outprice").innerHTML = grad.getAttribute("data-price");
+                    }
+                    if(getSpecificColor !==  grad.getAttribute("color")){
+                        grad.classList.remove("second")
+                    }
+                }
+            });
         });
     }
 }
