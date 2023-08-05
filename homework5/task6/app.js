@@ -11,6 +11,7 @@ function changeColor() {
                 if(colorList[j].classList.contains("active")){
                     colorList[j].classList.remove("active");
                     element.classList.toggle("active");
+                    document.getElementById("outprice").innerHTML = element.getAttribute("data-price");
                 } 
             }
         });
