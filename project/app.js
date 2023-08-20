@@ -40,29 +40,19 @@ function createTask() {
     if (event.target.classList.contains("delete")) {
       event.target.parentNode.remove();
     }
-     /*Edit a task*/
-     if (event.target.classList.contains("edit")) {
-      let inputText = document.createElement('input');
+    /*Edit a task*/
+    if (event.target.classList.contains("edit")) {
+      let inputText = document.createElement("input");
       inputText.placeholder = taskText.textContent;
-      taskText.replaceWith(inputText); // Replace the <span> with the <input>
-  }
-  
+      taskText.replaceWith(inputText);
 
+      inputText.addEventListener("blur", function () {
+        taskText.textContent = inputText.value;
+        inputText.replaceWith(taskText);
+      });
+    }
   });
-
 }
 
 let addButton = document.getElementById("addButton");
 addButton.addEventListener("click", createTask);
-
-
-// let getDeleteButton = document.querySelectorAll(".delete");
-
-// if (getDeleteButton.length > 0) {
-//   for (let i = 0; i < getDeleteButton.length; i++) {
-//     const element = getDeleteButton[i];
-//     element.addEventListener("click", function () {
-//       this.parentNode.remove();
-//     });
-//   }
-// }
