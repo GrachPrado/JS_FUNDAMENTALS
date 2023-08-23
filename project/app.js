@@ -7,6 +7,7 @@ function createTask() {
   let taskText = document.createElement("span");
   const getForm = document.forms["container"]["task"].value;
   let incompleteTasks = document.getElementById("incomplete_tasks");
+  let completeTasks = document.getElementById("completed-tasks");
 
   /*set attribute for the list*/
   createList.setAttribute("data-delete", "delete");
@@ -14,6 +15,7 @@ function createTask() {
 
   /*checkbox element in the li*/
   createCheckBox.setAttribute("type", "checkbox");
+  createCheckBox.className = "checked";
   createList.prepend(createCheckBox);
 
   /*delete button tags in the li element*/
@@ -52,6 +54,19 @@ function createTask() {
       });
     }
   });
+
+  // Get all elements with the class "zhopa"
+let checkboxes = document.getElementsByClassName("checked");
+
+// Loop through the checkboxes and add a click event listener to each one
+for (let i = 0; i < checkboxes.length; i++) {
+  checkboxes[i].addEventListener("click", (event) => {
+      event.target.parentNode.remove();
+      completeTasks.append(event.target.parentNode);
+  });
+}
+
+
 }
 
 let addButton = document.getElementById("addButton");
