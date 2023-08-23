@@ -42,14 +42,11 @@ function createTask() {
     }
     /*Edit a task*/
     if (event.target.classList.contains("edit")) {
-      let inputText = document.createElement("input");
-      inputText.placeholder = taskText.textContent;
-      taskText.replaceWith(inputText);
+      let firstElement = createList.firstChild.innerText;
+      
 
-      inputText.addEventListener("blur", function () {
-        taskText.textContent = inputText.value;
-        inputText.replaceWith(taskText);
-      });
+      
+      
     }
   });
 }
