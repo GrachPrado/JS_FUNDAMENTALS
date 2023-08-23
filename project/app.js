@@ -51,6 +51,7 @@ function createTask() {
         event.target.parentNode.firstChild.replaceWith(inputText.value);
       });
     }
+  });
 }
 
 let addButton = document.getElementById("addButton");
