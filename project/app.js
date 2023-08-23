@@ -42,13 +42,15 @@ function createTask() {
     }
     /*Edit a task*/
     if (event.target.classList.contains("edit")) {
-      let firstElement = createList.firstChild.innerText;
-      
-
-      
-      
+      // edit the task
+      let inputText = document.createElement("input");
+      inputText.placeholder = "Type something";
+      event.target.parentNode.firstChild.replaceWith(inputText);
+      // return the value of the input
+      inputText.addEventListener("blur", function () {
+        event.target.parentNode.firstChild.replaceWith(inputText.value);
+      });
     }
-  });
 }
 
 let addButton = document.getElementById("addButton");
