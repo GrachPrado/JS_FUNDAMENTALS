@@ -261,7 +261,9 @@ function loadFromLocalStorage() {
       createList.appendChild(createCheckBox);
       // Create / add label
       let createLabel = document.createElement("label");
-      createLabel.textContent = "zhopa";
+      let value = event.target.previousElementSibling;
+      console.log(value.value);
+      createLabel.innerHTML = value.value;
       createList.appendChild(createLabel);
 
       // Create / add input Text
@@ -296,8 +298,6 @@ function loadFromLocalStorage() {
   document.querySelectorAll(".container").forEach((container) => {
     container.addEventListener("click", addButtonClickHandler);
   });
-
-  /////////////
 }
 
 let addToDoListLayOut = document.getElementById("addButton");
