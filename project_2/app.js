@@ -187,10 +187,65 @@ function loadFromLocalStorage() {
 
       // Append the container after the form
       getForm.after(createAContainer);
+      let getContainers = document.querySelectorAll(".container");
+      // checkboxes
+      for (let i = 0; i < getContainers.length; i++) {
+        const container = getContainers[i];
+        container.addEventListener("change", (event) => {
+          if (event.target.type === "checkbox") {
+            const listItem = event.target.parentElement;
+            const incompleteList = container.querySelector(".incomplete-tasks");
+            const completeList = container.querySelector("#complete-tasks");
+
+            if (event.target.checked) {
+              // Move the checked item to the complete list
+              completeList.appendChild(listItem);
+            } else {
+              // Move the unchecked item back to the incomplete list
+              incompleteList.appendChild(listItem);
+            }
+          }
+          saveToLocalStorage();
+        });
+        // Add an event listener to the edit buttons
+        container.addEventListener("click", (event) => {
+          if (event.target.classList.contains("edit")) {
+            const listItem = event.target.parentElement;
+            const label = listItem.querySelector("label");
+            const input = listItem.querySelector("input[type='text']");
+
+            // Toggle the input field and label for editing
+            label.style.display = "none";
+            input.style.display = "inline-block";
+            input.value = label.textContent;
+            input.focus();
+
+            // Save the edited text when the input loses focus
+            input.addEventListener("blur", () => {
+              label.style.display = "inline-block";
+              input.style.display = "none";
+              label.textContent = input.value;
+              saveToLocalStorage();
+            });
+          }
+          saveToLocalStorage();
+        });
+        // Add an event listener to the delete buttons
+        createAContainer.addEventListener("click", (event) => {
+          if (event.target.classList.contains("delete")) {
+            const listItem = event.target.parentElement;
+            const list = listItem.parentElement;
+
+            // Remove the clicked item from the list
+            list.removeChild(listItem);
+          }
+          saveToLocalStorage();
+        });
+      }
+      //
     });
   }
 }
-
 
 let addToDoListLayOut = document.getElementById("addButton");
 addToDoListLayOut.addEventListener("click", createAList);
