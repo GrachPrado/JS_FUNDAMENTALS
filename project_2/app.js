@@ -307,6 +307,7 @@ addToDoListLayOut.addEventListener("click", createAList);
 
 function deleteLocalStorage() {
   localStorage.clear();
+  location.reload();
 }
 
 // load
