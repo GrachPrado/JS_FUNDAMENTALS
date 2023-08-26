@@ -245,6 +245,59 @@ function loadFromLocalStorage() {
       //
     });
   }
+  /////////////
+  // Define the click event handler
+  function addButtonClickHandler(event) {
+    if (event.target.classList.contains("addButtonItems")) {
+      // Find the appropriate incomplete tasks list based on the button's parent container
+      let container = event.target.closest(".container");
+      let incompleteList = container.querySelector(".incomplete-tasks");
+
+      // Create a new list item and set its content
+      let createList = document.createElement("li");
+      // Create / add checkBox
+      let createCheckBox = document.createElement("input");
+      createCheckBox.type = "checkbox";
+      createList.appendChild(createCheckBox);
+      // Create / add label
+      let createLabel = document.createElement("label");
+      createLabel.textContent = "zhopa";
+      createList.appendChild(createLabel);
+
+      // Create / add input Text
+      let createInput = document.createElement("input");
+      createInput.id = "item";
+      createInput.type = "text";
+      createList.appendChild(createInput);
+
+      // Create / Add edit button
+      let createEditButton = document.createElement("button");
+      createEditButton.className = "edit";
+      createEditButton.innerHTML = "edit";
+      createList.appendChild(createEditButton);
+
+      // Create / Add delete button
+      let createDeleteButton = document.createElement("button");
+      createDeleteButton.className = "delete";
+      createDeleteButton.innerHTML = "delete";
+      createList.appendChild(createDeleteButton);
+      // Append the new list item to the incomplete tasks list within this container
+      incompleteList.appendChild(createList);
+
+      // Save to local storage (implement this function)
+      saveToLocalStorage();
+
+      // Remove the event listener after it's executed once
+      event.target.removeEventListener("click", addButtonClickHandler);
+    }
+  }
+
+  // Add the click event listener to both containers
+  document.querySelectorAll(".container").forEach((container) => {
+    container.addEventListener("click", addButtonClickHandler);
+  });
+
+  /////////////
 }
 
 let addToDoListLayOut = document.getElementById("addButton");
